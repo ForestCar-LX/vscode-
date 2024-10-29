@@ -1,34 +1,34 @@
 {
-    "tasks": [
-        {   //Cmake active file 操作，要和launch.json里的"preLaunchTask"值对应一致。
-            "label": "Cmake active file", 
-            "dependsOn":[
-                //Cmake active file操作依赖于下面的cmake和 make操作,也即调用下面两个标签label的操作。
-                "cmake", 
-                "make"
-            ]
-        },
+    "tasks":[
         {
-            "label": "cmake",//cmake操作。
-            "type":"shell",           
-            "command":"cmake",//执行cmake操作所使用的命令。
-            "args": [                 //cmake命令执行时的命令行参数。
-                "-G MinGW Makefiles", //生成 mingw32-make 能够编译的Makefile。
-                "../"
+            "type":"cppbuild",////任务类型,可以取cppbuild、shell、process，三种执行时稍有差异，这里选择默认cppbuild。
+            "label":"C/C++:gcc.exe生成活动文件",////任务标签(标记)，也即任务名称，任务名称要和launch.json里的"preLaunchTask"值对应一致
+            "command":"C:\\Users\\forestcar\\AppData\\Local\\mingw64\\bin\\gcc.exe",//编译器及其路径，.c用gcc.exe编译器，.cpp用g++.exe编译器,还可以是后面即将讲到的Cmake、make。
+            "args":[
+                "-fdiagnostics-color=always",
+                "-g",//生成和调试有关的信息，launch.json会用到这些信息
+                //"${file}",//参与编译的文件
+                //"*.c",//使用通配符表示所有.c文件
+
+                "${fileDirname}\\app.c",//也可以一个一个把文件名输入
+                "${fileDirname}\\cal_num.c",
+
+                "-o",//指定编译的输出，windows系统下输出.exe文件,见下行.
+                //"${fileDirname}\\${fileBasenameNoExtension}.exe"//最后编译生成的可执行文件，与代码文件同名，应该与launch.json的"program"的值代表的路径一致
+                "${fileDirname}\\app.exe"
+                ],
+            "options":{
+                "cwd":"${fileDirname}"//当前文件夹目录(路径)
+                },
+            "problemMatcher":[//使用gcc的问题匹配器
+                "$gcc"
+                ],
+            "group":{
+                "kind":"build",
+                "isDefault":true
+                },
+            "detail":"调试器生成的任务。"
+        }
             ],
-        },
-        {
-            "label": "make",              //make 操作。
-            "command":"mingw32-make.exe", //执行 make 操作所使用的命令(mingw32-make.exe已经添加了环境变量)。
-            "args": [
-            ],
-            "options": {
-                "cwd": "${fileDirname}\\build" //表示执行当前操作的工作目录。
-            }
-        },
-    ],
-    "version": "2.0.0",
-    "options": {
-        "cwd": "${fileDirname}\\build"  //表示执行上述操作时的工作目录。
-    },
+        "version":"2.0.0"
 }
