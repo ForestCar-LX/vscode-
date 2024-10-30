@@ -5,7 +5,7 @@
         "type": "cppdbg",
         "request": "launch",
         //下面是windows系统下需要调试的.exe文件及其路径,应该与CmakeLists.txt文件中project的文件名一致。
-        "program":  "${fileDirname}\\build\\app.exe",  
+        "program":  "${workspaceFolder}\\build\\main.exe",  
         "args": [],
         "stopAtEntry": false,
         //使用${fileDirname}，需要先打开项目的一个c/c++文件再运行,

@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include "cal_num.h"
 
 int cal_plus(int a,int b)
 {

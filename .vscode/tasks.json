@@ -14,7 +14,7 @@
             "command":"cmake",//执行cmake操作所使用的命令。
             "args": [                 //cmake命令执行时的命令行参数。
                 "-G MinGW Makefiles", //生成 mingw32-make 能够编译的Makefile。
-                "../"
+                ".."
             ],
         },
         {
@@ -23,12 +23,12 @@
             "args": [
             ],
             "options": {
-                "cwd": "${fileDirname}\\build" //表示执行当前操作的工作目录。
+                "cwd": "${workspaceFolder}\\build" //表示执行当前操作的工作目录。
             }
         },
     ],
     "version": "2.0.0",
     "options": {
-        "cwd": "${fileDirname}\\build"  //表示执行上述操作时的工作目录。
+        "cwd": "${workspaceFolder}\\build"  //表示执行上述操作时的工作目录。
     },
 }
